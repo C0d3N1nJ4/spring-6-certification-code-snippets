@@ -6,22 +6,25 @@ public class Sequence {
 
     private final AtomicInteger counter = new AtomicInteger();
 
+    private final String id;
     private String prefix;
     private String suffix;
 
-    public void setPrefix(String prefix) {
+    public Sequence(String id, String prefix, String suffix) {
+        this.id = id;
         this.prefix = prefix;
-    }
-
-    public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
 
-    public void setInitial(int initial) {
-        counter.set(initial);
+    public String getId() {
+        return id;
     }
 
-    public String nextValue() {
-        return prefix + counter.getAndIncrement() + suffix;
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public String getSuffix() {
+        return suffix;
     }
 }
