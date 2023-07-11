@@ -1,18 +1,30 @@
 # spring-6-certification-code-snippets
 
-Create POJOs by invoking a constructor
+AOP with Annotations
 
-Problem : 
-You would like to create a POJO instance or bean in the Spring IoC container by invoking it's construcotr which is the most common and direct way of creating beans.
-It is equivalent to using the new operator to create objects in Java.
+Define an aspect by decorating a class with the @Aspect annotation.
+The methods in this class are called advices and are executed when a join point is reached. 
+Advice methods are annotated with the following annotations from AspectJ:
+- @Before
+- @After
+- @AfterReturning
+- @AfterThrowing
+- @Around
+- @Pointcut
+- @DeclareParents
 
-Solution: 
-1. Define a POJO class with a constructor or constructors.
-2. Create a Java configuration class to configure POJO instance values with constructors for the Spring IoC container.
-3. Instantiate the Spring IoC container to scan for Java classes with annotations. 
-   The POJO instances or bean instances become accessible to the application.
+The @Before advice is executed before the join point is reached.
+The @After advice is executed after the join point is reached.
+The @AfterReturning advice is executed after the join point is reached and the method returns normally.
+The @AfterThrowing advice is executed after the join point is reached and the method throws an exception.
+The @Around advice is executed before and after the join point is reached.
+The @Pointcut annotation defines a pointcut expression that can be used by advice annotations.
+The @DeclareParents annotation is used to introduce new functionality to a class.
 
-Considerations:
+To enable annotation support in the Spring IoC container, add @EnableAspectJAutoProxy to a configuration class.
+To apply AOP, Spring creates a proxy object that wraps the bean to which the aspect is applied and by default uses JDK dynamic proxies that are based on interfaces.
+For scenarios where interfaces are not available, use CGLIB proxies and set the proxyTargetClass attribute of the @EnableAspectJAutoProxy annotation to true.
 
-Suppose you're going to develop a shop application to sell products online. Firstly, you create the Product class which has several properties such as the product name and price.
-As there are many types of products in your shop, you make the Product class abstract to extend it for different product subclasses.
+To support AOP with annotations, Spring uses AspectJ annotations. AspectJ is a framework that provides a declarative language for defining aspects and weaving them into the application code as well as for pointcut parsing and matching.
+Although AOP with annotations is supported by Spring, it is not a Spring-specific feature. It is a feature of AspectJ that Spring supports so Spring AOP is not dependent on the AspectJ compiler or weaver.
+
