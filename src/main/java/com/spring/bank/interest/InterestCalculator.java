@@ -1,4 +1,4 @@
-package com.spring.bank;
+package com.spring.bank.interest;
 
 public interface InterestCalculator {
 

@@ -1,8 +1,7 @@
 package com.spring;
 
-import com.spring.bank.InterestCalculator;
-import com.spring.bank.SimpleInterestCalculator;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
+import com.spring.bank.interest.InterestCalculator;
+import com.spring.bank.interest.SimpleInterestCalculator;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

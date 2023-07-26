@@ -1,7 +1,7 @@
 package com.spring;
 
-import com.spring.bank.InterestCalculator;
-import com.spring.bank.SimpleInterestCalculator;
+import com.spring.bank.interest.InterestCalculator;
+import com.spring.bank.interest.SimpleInterestCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
