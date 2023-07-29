@@ -1,7 +1,5 @@
 package com.spring.bank.account;
 
-import com.spring.bank.account.Account;
-import com.spring.bank.account.AccountDao;
 import com.spring.bank.exceptions.AccountNotFoundExceptions;
 import com.spring.bank.exceptions.DuplicateAccountException;
 
@@ -12,7 +10,7 @@ public class InMemoryAccountDao implements AccountDao {
 
     private final Map<String, Account> accounts = new ConcurrentHashMap<>();
 
-    boolean accountExists(String accountNumber) {
+    public boolean accountExists(String accountNumber) {
         return accounts.containsKey(accountNumber);
     }
 
