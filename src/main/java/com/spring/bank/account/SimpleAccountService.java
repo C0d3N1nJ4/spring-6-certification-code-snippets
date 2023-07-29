@@ -2,7 +2,7 @@ package com.spring.bank.account;
 
 import com.spring.bank.exceptions.InsufficientBalanceException;
 
-class SimpleAccountService implements AccountService{
+public class SimpleAccountService implements AccountService{
 
     private final AccountDao accountDao;
 

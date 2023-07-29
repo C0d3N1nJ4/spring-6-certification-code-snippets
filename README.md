@@ -1,30 +1,15 @@
 # spring-6-certification-code-snippets
 
-AOP with Annotations
+## Creating Unit Tests for dependent classes using stubs and mocks
 
-Define an aspect by decorating a class with the @Aspect annotation.
-The methods in this class are called advices and are executed when a join point is reached. 
-Advice methods are annotated with the following annotations from AspectJ:
-- @Before
-- @After
-- @AfterReturning
-- @AfterThrowing
-- @Around
-- @Pointcut
-- @DeclareParents
+Testing an independent class is easy, because you don't have to consider how it's dependencies work and how to set them up properly.
+Although when testing a class that depends on the output of other classes or services (eg. database or network services), it is a little more tricky.
 
-The @Before advice is executed before the join point is reached.
-The @After advice is executed after the join point is reached.
-The @AfterReturning advice is executed after the join point is reached and the method returns normally.
-The @AfterThrowing advice is executed after the join point is reached and the method throws an exception.
-The @Around advice is executed before and after the join point is reached.
-The @Pointcut annotation defines a pointcut expression that can be used by advice annotations.
-The @DeclareParents annotation is used to introduce new functionality to a class.
+If we consider the AccountService interface in the service layer, this service is implemented by the SimpleAccountService class and depends on the 
+AccountDao object in the persistence layer to persist the account objects.
 
-To enable annotation support in the Spring IoC container, add @EnableAspectJAutoProxy to a configuration class.
-To apply AOP, Spring creates a proxy object that wraps the bean to which the aspect is applied and by default uses JDK dynamic proxies that are based on interfaces.
-For scenarios where interfaces are not available, use CGLIB proxies and set the proxyTargetClass attribute of the @EnableAspectJAutoProxy annotation to true.
+The InsufficientBalanceException is a subclass of the RuntimeException class and is thrown by the withdraw method of the AccountService interface when the 
+amount to be withdrawn is greater than the balance of the account.
 
-To support AOP with annotations, Spring uses AspectJ annotations. AspectJ is a framework that provides a declarative language for defining aspects and weaving them into the application code as well as for pointcut parsing and matching.
-Although AOP with annotations is supported by Spring, it is not a Spring-specific feature. It is a feature of AspectJ that Spring supports so Spring AOP is not dependent on the AspectJ compiler or weaver.
-
+A common technique used in unit testing to reduce complexity caused by dependencies is to use stubs. A stub must implement the same interface as the target object so that it can substitute for the target object.
+By creating a stub for the AccountDao that stores a single customer account and implements the findAccount() and updateAccount() methods since it is required for the deposit() and withdraw() methods.
